@@ -9,7 +9,6 @@ A link to a Google Colab file can be found here: [Colab](https://colab.research.
 ## Approach
 
 ![](images/2020-09-29-16-10-11.png)
-<center>Training Block Diagram</center>
 
 
 ### EigenFace recognition
@@ -41,16 +40,13 @@ Recognition:
 Here is the computed mean face:
 
 ![](images/2020-09-29-17-56-55.png)
-<center>Mean Face</center>
 
 Here is a normalized face compared with the original face:
 
 ![](images/2020-09-29-17-57-34.png)
-<center>Normalized Face vs Original Face</center>
 
 Here is a plot of the Eigenvalues:
 ![](images/2020-09-29-17-59-08.png)
-<center>Plot of EigenValues</center>
 
 We can see that at around 20 principal components, the variance offered by each Eigenface flattens out.
 
@@ -58,6 +54,7 @@ We can see that at around 20 principal components, the variance offered by each 
 
 Here are the heaviest few Eigenfaces:
 ![](images/2020-09-29-17-55-20.png)
+
 ![](images/2020-09-29-17-55-58.png)
 
 This is the lightest Eigenface:
@@ -76,7 +73,6 @@ An ensemble classifier is basically a collection of several weak classifiers. We
 Here, in the method that Viola and Jones proposed, we use several different features that make up the weak classifiers. For example, we take rectangular features, and use that to predict whether that particular feature correctly corresponds to that face.
 
 ![](images/2020-09-29-16-20-21.png)
-<center>Some examples of features types</center>
 
 In the above image there are some rectangular features that can be seen. We take such regions (the entire rectangle), and the compute the sum of the pixels of the sub-regions within the rectangle. Now, we take a difference between these particular rectangles.
 
@@ -133,7 +129,6 @@ In this approach, we are using the first method by utilizing the entire Yale fac
 The entire testing flow is shown below:
 
 ![](images/2020-09-29-16-08-53.png)
-<center>Testing Block Diagram</center>
 
 
 
@@ -149,7 +144,6 @@ Accuracy of Face Recognizer =  100.0
 ```
 Plotting the confusion matrix:
 ![](images/2020-10-06-18-12-19.png)
-<center>Confusion Matrix for Train Set</center>
 
 
 The Viola Jones detector managed to get about 80% of the test cases correctly. This is not a particularly large accuracy, and it could have been significantly better if a larger dataset was used. In contrast, the pretrained haar cascade classifier managed to get 97% of the faces correct. This is because the pretrained version has been trained on a much larger dataset, with much lower allowed tolerance values.
