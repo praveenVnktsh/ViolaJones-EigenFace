@@ -1,9 +1,8 @@
 
 # Viola Jones Face Detection with Eigen Face Recognition
 
-###### Praveen Venkatesh
+#### Praveen Venkatesh
 
-----------------------
 
 A link to a Google Colab file can be found here: [Colab](https://colab.research.google.com/drive/1Gfc4v2b_00aLaUDOrl-nqscd-wwTPTEM)
 
