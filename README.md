@@ -1,7 +1,3 @@
-<script type="text/javascript" async
-src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js? 
-config=TeX-MML-AM_CHTML"
-</script>
 
 # Viola Jones Face Detection with Eigen Face Recognition
 
@@ -24,11 +20,11 @@ Training Algorithm:
 
 - Find the mean face from the given dataset
 - Subtract each face from the mean face to normalize the faces.
-- Flatten the face vectors into a column vector, and append into a matrix. If we have $M$ training samples, then the matrix will have dimensions $M \times N^2$ where the image is of dimensions $N\times N$
-- Compute the covariance matrix of the training matrix. Instead of having a covariance matrix of $N^2 \times N^2$, we will find the covariance matrix that is of $M \times M $ dimensions. This is done to improve resource usage, and speed up computation since finding the Eigenvalues for large matrices is slow.
+- Flatten the face vectors into a column vector, and append into a matrix. If we have  M  training samples, then the matrix will have dimensions  M \times N^2  where the image is of dimensions  N\times N 
+- Compute the covariance matrix of the training matrix. Instead of having a covariance matrix of  N^2 \times N^2 , we will find the covariance matrix that is of  M \times M   dimensions. This is done to improve resource usage, and speed up computation since finding the Eigenvalues for large matrices is slow.
 - Find the Eigenvalues and Eigenvalues of the covariance matrix.
 - Project the training faces onto the Eigenspace. This gives the Eigen faces that we need. The Eigenfaces form the basis vectors for the Eigenspace.
-- Retain $k$ largest Eigenvalues and Eigenvectors. This $k$ can be chosen by plotting the Eigenvalues vs its rank in terms of largeness.
+- Retain  k  largest Eigenvalues and Eigenvectors. This  k  can be chosen by plotting the Eigenvalues vs its rank in terms of largeness.
     - This basically represents the fact that there are some Eigenvectors that do not bring as much variance into a particular face, and hence can be neglected.
 - We represent each training face as a linear combination of the Eigenfaces. The multiplying factors are stored as weights.
 
@@ -51,6 +47,7 @@ Here is a normalized face compared with the original face:
 ![](images/2020-09-29-17-57-34.png)
 
 Here is a plot of the Eigenvalues:
+
 ![](images/2020-09-29-17-59-08.png)
 
 We can see that at around 20 principal components, the variance offered by each Eigenface flattens out.
@@ -60,9 +57,12 @@ We can see that at around 20 principal components, the variance offered by each 
 Here are the heaviest few Eigenfaces:
 ![](images/2020-09-29-17-55-20.png)
 
+
 ![](images/2020-09-29-17-55-58.png)
 
+
 This is the lightest Eigenface:
+
 ![](images/2020-09-29-17-56-19.png)
 
 
@@ -81,13 +81,9 @@ Here, in the method that Viola and Jones proposed, we use several different feat
 
 In the above image there are some rectangular features that can be seen. We take such regions (the entire rectangle), and the compute the sum of the pixels of the sub-regions within the rectangle. Now, we take a difference between these particular rectangles.
 
-Now, computing these features in a huge image that has only a small portion marked as the face will be extremely intensive in terms of computational resources. Hence, the authors proposed the intermediate stage of an integral image. The integral image is computed from a normal image where the following transformation takes place:
+Now, computing these features in a huge image that has only a small portion marked as the face will be extremely intensive in terms of computational resources. Hence, the authors proposed the intermediate stage of an integral image. 
 
-$$
-A(x, y)=\sum_{x^{\prime} \leq x \atop y^{\prime} \leq y} a\left(x^{\prime}, y^{\prime}\right)
-$$
-
-Where $A$ refers to the integral image, and $a$ refers to the original image. Using this concept, finding the sum of the pixels in a $m \times n$ area reduces from $m\times n$ calculations to simply 4 additions! We would just need to take the corners of the region of interest and then compute the integral image.
+Where  A  refers to the integral image, and  a  refers to the original image. Using this concept, finding the sum of the pixels in a  m \times n  area reduces from  m\times n  calculations to simply 4 additions! We would just need to take the corners of the region of interest and then compute the integral image.
 
 
 One such example of an integral image from the yale face database is given by:
@@ -103,6 +99,7 @@ Now, we try to generate many thousands of these haar-like features and use these
 During the training phase, a moving window traverses the entire image. For each feature that we choose in a subwindow, we train a feature classifier that uses that particular feature to make a prediction. We compute the error of this particular classifier in classifying the image, and then update the weight of this particular classifier in the next stage of the training process. There are primarily 3 types of features that are used, but these features vary in size and weight throughout the image, and the best ones are chosen.
 
 For example, the top two best features chosen are:
+
 ![](images/2020-09-29-16-49-51.png)
 
 These are learnt features from the training set. Similarly, the authors decided to use 6000 of such features, with 38 cascaded stages.
@@ -148,6 +145,7 @@ Total Pictures=  132
 Accuracy of Face Recognizer =  100.0
 ```
 Plotting the confusion matrix:
+
 ![](images/2020-10-06-18-12-19.png)
 
 
@@ -175,6 +173,7 @@ Accuracy of Face Detector =  100.0
 Another run gave a higher result of 72% for the EigenFace detection. Hence we can see that the accuracy depends largely on the test and train set used for making the predictions.
 
 Another run gave an accuracy of 48.48%. Here is the confusion matrix for the same:
+
 ![](images/2020-10-06-18-13-49.png)
 
 Here are some results of correct predictions:
