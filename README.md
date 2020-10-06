@@ -55,6 +55,7 @@ We can see that at around 20 principal components, the variance offered by each 
 
 
 Here are the heaviest few Eigenfaces:
+
 ![](images/2020-09-29-17-55-20.png)
 
 
