@@ -201,3 +201,8 @@ Here are some results of correct predictions:
 5) Training Haar Cascades - "https://memememememememe.me/post/training-haar-cascades/"
 
 6) Bradski, G. (2000). The OpenCV Library. Dr. Dobb&#x27;s Journal of Software Tools.
+
+
+
+###### Disclaimer
+This repository was submitted for the Probability and Random Processes course as an assignment offered at IIT Gandhinagar during the academic year 2020-2021.
